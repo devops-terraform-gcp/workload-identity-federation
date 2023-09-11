@@ -20,6 +20,21 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
+    # Configure Workload Identity Federation and generate an access token.
+    - id: 'auth'
+      name: 'Authenticate to Google Cloud'
+      uses: 'google-github-actions/auth@v1'
+      with:
+        token_format: 'access_token'
+        workload_identity_provider:  ${{ secrets.WORKLOAD_IDENTITY_PROVIDER_ID }}
+        service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+
+    # List the instances in the project
+    # Enable Google Billing to run this stage
+    # - name: List Instances
+    #   run: |-
+    #     gcloud compute instances list --project $PROJECT_ID
+
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
 
@@ -44,20 +59,5 @@ jobs:
 
     - name: terraform plan
       run: terraform plan -out "planfile"
-
-    # Configure Workload Identity Federation and generate an access token.
-    - id: 'auth'
-      name: 'Authenticate to Google Cloud'
-      uses: 'google-github-actions/auth@v1'
-      with:
-        token_format: 'access_token'
-        workload_identity_provider:  ${{ secrets.WORKLOAD_IDENTITY_PROVIDER_ID }}
-        service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
-
-    # List the instances in the project
-    # Enable Google Billing to run this stage
-    # - name: List Instances
-    #   run: |-
-    #     gcloud compute instances list --project $PROJECT_ID
 
 
