@@ -1,4 +1,6 @@
 # GCP Worload Identity Federation Multi Provider Module
+[![Deploy to GCP](https://github.com/devops-terraform-gcp/workload-identity-federation/actions/workflows/wif.yml/badge.svg)](https://github.com/devops-terraform-gcp/workload-identity-federation/actions/workflows/wif.yml)
+
 The Workload identity federation module is used to impersonate a gcp service account from the credentials issued by an external identity provider and access resources on Google Cloud. 
 This module will create pool,providers(aws/oidc)and service account used for setting up workload identity federation.
 ## Roles Needed
