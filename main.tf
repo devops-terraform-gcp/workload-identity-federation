@@ -17,19 +17,6 @@ module "wif" {
         "attribute.repository" = "assertion.repository"
         "google.subject"       = "assertion.sub"
       }
-    },
-    {
-      provider_id     = "my-provider-2"
-      select_provider = "aws"
-      provider_config = {
-        account_id = "999999999999"
-      }
-      disabled            = false
-      attribute_condition = "attribute.aws_role==\"arn:aws:sts::999999999999:assumed-role/stack-eu-central-1-lambdaRole\""
-      attribute_mapping = {
-        "attribute.actor" = "assertion.actor"
-        "google.subject"  = "assertion.sub"
-      }
     }
   ]
   service_accounts = [

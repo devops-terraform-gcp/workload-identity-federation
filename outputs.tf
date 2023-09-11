@@ -13,16 +13,12 @@ output "pool_name" {
   value       = module.wif.pool_name
 }
 
-# output "provider_id" {
-#   description = "Provider id"
-#   value = { for id in var.wif_providers : id.provider_id => { id = google_iam_workload_identity_pool_provider.example[id.provider_id].id
-#     state = google_iam_workload_identity_pool_provider.example[id.provider_id].state
-#     name = google_iam_workload_identity_pool_provider.example[id.provider_id].name }
-#   }
-# }
+output "provider_id" {
+  description = "provider id"
+  value       = module.wif.provider_id
+}
 
-
-# output "service_account" {
-#   description = "Service Account name"
-#   value       = [for sa in var.service_accounts : google_service_account.service_account[sa.name].name]
-# }
+output "service_account" {
+  description = "service account"
+  value       = module.wif.service_account
+}
