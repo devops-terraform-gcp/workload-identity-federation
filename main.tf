@@ -2,15 +2,14 @@ module "wif" {
   source = "./module"
 
   project_id = var.project_id
-  pool_id    = "my-pool"
+  pool_id    = "my-pool-${random_id.name.hex}"
   wif_providers = [
     { provider_id     = "my-provider-1"
       select_provider = "oidc"
       provider_config = {
-        issuer_uri        = "https://token.actions.githubusercontent.com"
+        issuer_uri = "https://token.actions.githubusercontent.com"
       }
-      disabled            = false
-      attribute_condition = "\"e968c2ef-047c-498d-8d79-16ca1b61e77e\" in assertion.groups"
+      disabled = false
       attribute_mapping = {
         "attribute.actor"      = "assertion.actor"
         "attribute.repository" = "assertion.repository"
@@ -21,9 +20,13 @@ module "wif" {
   service_accounts = [
     {
       name           = "wif-sa-1"
-      attribute      = "attribute.repository/my-org/my-repo"
+      attribute      = "attribute.repository/devops-terraform-gcp/workload-identity-federation"
       all_identities = true
-      roles          = ["roles/compute.admin"]
+      roles          = ["roles/iam.workloadIdentityUser", "roles/compute.admin"]
     }
   ]
+}
+
+resource "random_id" "name" {
+  byte_length = 2
 }
