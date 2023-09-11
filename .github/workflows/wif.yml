@@ -1,4 +1,4 @@
-name: Connect to GCP and List Instances
+name: workload-identity-federation
 
 on:
   push:
