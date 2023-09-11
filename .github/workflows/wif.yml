@@ -58,6 +58,6 @@ jobs:
       run: terraform validate
 
     - name: terraform plan
-      run: terraform plan  -var="PROJECT_ID==${{ secrets.GCP_PROJECT_ID }}"
+      run: terraform plan  -var="project_id==${{ secrets.GCP_PROJECT_ID }}"
 
 
