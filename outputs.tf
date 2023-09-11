@@ -14,11 +14,11 @@ output "pool_name" {
 }
 
 output "provider_id" {
-  description = "provider id"
+  description = "Provider id"
   value       = module.wif.provider_id
 }
 
 output "service_account" {
-  description = "service account"
+  description = "Service account"
   value       = module.wif.service_account
 }
