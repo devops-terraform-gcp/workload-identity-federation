@@ -1,7 +1,7 @@
 module "wif" {
   source = "./module"
 
-  project_id = var.project_id
+  project_id = var.PROJECT_ID
   pool_id    = "my-pool-${random_id.name.hex}"
   wif_providers = [
     { provider_id     = "my-provider-1"
