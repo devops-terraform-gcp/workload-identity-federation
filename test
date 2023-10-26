@@ -1,0 +1,16 @@
+resource "null_resource" "get_hostname" {
+  count = var.instances
+  provisioner "remote-exec" {
+    connection {
+      type     = "ssh"
+      user     = var.vm_username
+      password = var.vm_password
+      host     = data.azurerm_virtual_machine_scale_set.virtual_machine.instances[count.index].private_ip_address
+    }
+    inline = [
+      "hostname -a",
+    ]
+  }
+  depends_on = [azurerm_orchestrated_virtual_machine_scale_set.virtual_machine]
+
+}
